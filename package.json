@@ -36,8 +36,12 @@
     "typescript-eslint": "^8.19.0"
   },
   "dependencies": {
+    "@rainbow-me/rainbowkit": "^2.2.4",
+    "@tanstack/react-query": "^5.74.3",
     "next": "~15.2.4",
     "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react-dom": "18.3.1",
+    "viem": "2.x",
+    "wagmi": "^2.14.16"
   }
 }
