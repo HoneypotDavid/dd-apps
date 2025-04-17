@@ -2,17 +2,36 @@
   "name": "@dd-apps/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "hnode": "hardhat node --config apps/dd-contracts/hardhat.config.ts",
+    "hcompile": "hardhat compile --config apps/dd-contracts/hardhat.config.ts",
+    "hdeploy:Lock": "hardhat clean --config apps/dd-contracts/hardhat.config.ts && hardhat ignition deploy apps/dd-contracts/ignition/modules/Lock.ts --config apps/dd-contracts/hardhat.config.ts --network  localhost",
+    "hdeploy:Token": "hardhat clean --config apps/dd-contracts/hardhat.config.ts && hardhat ignition deploy apps/dd-contracts/ignition/modules/Token.ts --config apps/dd-contracts/hardhat.config.ts --network  localhost",
+    "htest": "hardhat test --config apps/dd-contracts/hardhat.config.ts"
+  },
   "private": true,
+  "dependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@rainbow-me/rainbowkit": "^2.2.4",
+    "@tanstack/react-query": "^5.74.3",
+    "next": "~15.2.4",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "viem": "2.x",
+    "wagmi": "^2.14.16"
+  },
   "devDependencies": {
     "@eslint/compat": "^1.1.1",
     "@eslint/eslintrc": "^2.1.1",
     "@eslint/js": "^9.8.0",
     "@next/eslint-plugin-next": "^15.2.4",
+    "@nomicfoundation/hardhat-chai-matchers": "^2.0.8",
+    "@nomicfoundation/hardhat-ignition": "^0.15.11",
     "@nx/eslint": "20.7.2",
     "@nx/eslint-plugin": "20.7.2",
     "@nx/js": "20.7.2",
     "@nx/next": "20.7.2",
+    "@nx/workspace": "^20.8.0",
     "@swc-node/register": "~1.9.1",
     "@swc/cli": "~0.6.0",
     "@swc/core": "~1.5.7",
@@ -27,6 +46,7 @@
     "eslint-plugin-jsx-a11y": "6.10.1",
     "eslint-plugin-react": "7.35.0",
     "eslint-plugin-react-hooks": "5.0.0",
+    "hardhat": "^2.23.0",
     "nx": "20.7.2",
     "postcss": "8.4.38",
     "prettier": "^2.6.2",
@@ -34,14 +54,5 @@
     "tslib": "^2.3.0",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.19.0"
-  },
-  "dependencies": {
-    "@rainbow-me/rainbowkit": "^2.2.4",
-    "@tanstack/react-query": "^5.74.3",
-    "next": "~15.2.4",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
-    "viem": "2.x",
-    "wagmi": "^2.14.16"
   }
 }

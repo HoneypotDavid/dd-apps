@@ -1,0 +1,15 @@
+{
+ "name": "dd-contracts",
+ "root": "apps/dd-contracts",
+ "sourceRoot": "apps/dd-contracts",
+ "projectType": "application",
+ "targets": {
+  "build": {
+   "executor": "nx:run-commands",
+   "options": {
+    "command": "echo 'Build command here'",
+    "cwd": "apps/dd-contracts"
+   }
+  }
+ }
+}

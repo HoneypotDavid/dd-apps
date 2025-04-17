@@ -1,5 +1,3 @@
-'use client';
-
 import { getDefaultConfig } from '@rainbow-me/rainbowkit';
 import { ethernity } from 'viem/chains';
 import { Config } from 'wagmi';

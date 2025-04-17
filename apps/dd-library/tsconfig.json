@@ -21,7 +21,9 @@
     ],
     "paths": {
       "@/*": ["./*"],
-      "@/components/*": ["./components/*"]
+      "@/components/*": ["./components/*"],
+      "@/assets/*": ["./assets/*"],
+      "@/styles/*": ["./styles/*"]
     },
     "outDir": "dist",
     "rootDir": "."
@@ -35,7 +37,9 @@
     "app/**/*.tsx",
     "next-env.d.ts",
     ".next/types/**/*.ts",
-    "components/**/*"
+    "components/**/*",
+    "assets/**/*",
+    "styles/**/*"
   ],
   "exclude": [
     "out-tsc",
