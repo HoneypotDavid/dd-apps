@@ -5,6 +5,9 @@
   "references": [
     {
       "path": "./apps/dd-library"
+    },
+    {
+      "path": "./apps/dd-vote"
     }
   ]
 }
