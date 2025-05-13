@@ -7,7 +7,8 @@
     "hcompile": "hardhat compile --config apps/dd-contracts/hardhat.config.ts",
     "hdeploy:Lock": "hardhat clean --config apps/dd-contracts/hardhat.config.ts && hardhat ignition deploy apps/dd-contracts/ignition/modules/Lock.ts --config apps/dd-contracts/hardhat.config.ts --network  localhost",
     "hdeploy:Token": "hardhat clean --config apps/dd-contracts/hardhat.config.ts && hardhat ignition deploy apps/dd-contracts/ignition/modules/Token.ts --config apps/dd-contracts/hardhat.config.ts --network  localhost",
-    "htest": "hardhat test --config apps/dd-contracts/hardhat.config.ts"
+    "htest": "hardhat test --config apps/dd-contracts/hardhat.config.ts",
+    "mg": "nx start dd-mg --port 3001"
   },
   "private": true,
   "dependencies": {
@@ -24,6 +25,7 @@
     "@eslint/compat": "^1.1.1",
     "@eslint/eslintrc": "^2.1.1",
     "@eslint/js": "^9.8.0",
+    "@iconify/react": "^6.0.0",
     "@next/eslint-plugin-next": "^15.2.4",
     "@nomicfoundation/hardhat-chai-matchers": "^2.0.8",
     "@nomicfoundation/hardhat-ignition": "^0.15.11",

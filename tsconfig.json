@@ -8,6 +8,9 @@
     },
     {
       "path": "./apps/dd-vote"
+    },
+    {
+      "path": "./apps/dd-mg"
     }
   ]
 }
