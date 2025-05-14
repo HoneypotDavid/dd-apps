@@ -1,5 +1,5 @@
 {
-  "name": "@dd-apps/dd-library",
+  "name": "@dd-apps/dd-mg",
   "version": "0.0.1",
   "private": true,
   "dependencies": {

@@ -4,13 +4,13 @@
   "files": [],
   "references": [
     {
-      "path": "./apps/dd-library"
+      "path": "./apps/dd-mg"
     },
     {
       "path": "./apps/dd-vote"
     },
     {
-      "path": "./apps/dd-mg"
+      "path": "./libs/ui"
     }
   ]
 }

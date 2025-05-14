@@ -2,6 +2,8 @@
 import Link from 'next/link';
 import React from 'react';
 import Profile from './components/Profile';
+import { Ui } from '@dd-apps/ui';
+
 const Sidebar = () => {
   const routers = [
     {
@@ -21,6 +23,7 @@ const Sidebar = () => {
   return (
     <div className="sidebar w-[200px] h-full bg-[var(--dd-page-bg-2)]">
       <Profile />
+      <Ui />
       <ul className="px-[16px]">
         {routers.map((router) => (
           <li

@@ -1,6 +1,6 @@
 import '@rainbow-me/rainbowkit/styles.css';
-import '@/styles/global.css';
-import '@/styles/variable.css';
+import '../styles/global.css';
+import '../styles/variable.css';
 import MainLayout from '@/components/MainLayout/index';
 import Provider from '@/components/Provider';
 

@@ -1,8 +1,6 @@
 'use client';
 
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import Image from 'next/image';
-
 import { useAccount } from 'wagmi';
 
 export default function Profile() {

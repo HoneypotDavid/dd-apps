@@ -23,14 +23,15 @@
       "@/*": ["./*"],
       "@/components/*": ["./components/*"],
       "@/assets/*": ["./assets/*"],
-      "@/styles/*": ["./styles/*"]
+      "@/styles/*": ["./styles/*"],
+      "@dd-apps/ui": ["../../libs/ui/src/index.ts"]
     },
     "outDir": "dist",
     "rootDir": "."
   },
   "include": [
-    "../../apps/dd-library/.next/types/**/*.ts",
-    "../../dist/apps/dd-library/.next/types/**/*.ts",
+    "../../apps/dd-mg/.next/types/**/*.ts",
+    "../../dist/apps/dd-mg/.next/types/**/*.ts",
     "app/**/*.js",
     "app/**/*.jsx",
     "app/**/*.ts",
