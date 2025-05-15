@@ -4,7 +4,7 @@ import { Config } from 'wagmi';
 
 export const config: Config = getDefaultConfig({
   appName: 'dd-mg',
-  projectId: 'e6d817dc960e1d6105c32da0137365c1',
+  projectId: '1a79a7a43f73cb909bb679f5b41b8fbf',
   chains: [ethernity],
   ssr: true, // If your dApp uses server side rendering (SSR)
 });

@@ -15,13 +15,13 @@
 
  --dd-button-bg-1: rgba(33, 40, 48, 1);
 
- --dd-color-primary: #238636;
- --dd-color-primary-hover: #27ae60;
+ --dd-color-primary: #ff3a3a;
+ --dd-color-primary-hover: #C20C0C;
 
  --dd-function-red: #c0392b;
 
  --dd-page-bg-1: var(--dd-gray-1200);
- --dd-page-bg-2: rgba(0, 0, 0, 1);
+ --dd-page-bg-2: #242424;
 
  --dd-line-bg-1: var(--dd-gray-1100);
  --dd-line-bg-2: var(--dd-gray-900);
