@@ -62,6 +62,7 @@ const Sidebar = ({ open }: { open: boolean }) => {
                 transition: 'opacity 0.2s ease-in-out',
                 boxSizing: 'border-box',
                 color: 'inherit',
+                fontSize: '14px',
               }}
             >
               {item.name}
