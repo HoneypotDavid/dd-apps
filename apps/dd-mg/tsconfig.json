@@ -24,7 +24,9 @@
       "@/components/*": ["./components/*"],
       "@/assets/*": ["./assets/*"],
       "@/styles/*": ["./styles/*"],
-      "@dd-apps/ui": ["../../libs/ui/src/index.ts"]
+      "@dd-apps/ui/*": ["../../shared/ui/src/*"],
+      "@dd-apps/ui": ["../../shared/ui/src/index.ts"],
+      "@dd-styles": ["../../shared/ui/src/styles/index.scss"]
     },
     "outDir": "dist",
     "rootDir": "../../"
@@ -41,9 +43,11 @@
     "components/**/*",
     "assets/**/*",
     "styles/**/*",
-    "../../libs/ui/src/index.ts",
-    "../../config/**/*.ts",
-    "../../config/**/*.tsx"
+    "../../shared/ui/src/index.ts",
+    "config/**/*.tsx",
+    "config/**/*.ts",
+    "provider/**/*.tsx",
+    "provider/**/*.ts"
   ],
   "exclude": [
     "out-tsc",

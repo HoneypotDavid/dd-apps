@@ -1,4 +1,5 @@
 'use client';
+import { Button, Input } from '@dd-apps/ui';
 import { z } from 'zod';
 
 // Step 1: 定义校验 schema
@@ -22,14 +23,12 @@ export default function Publish() {
         </div>
       </div>
 
-      <div className="publish-form shadow-[0_0_1px_rgb(var(--dd-line-bg-1)/100%)_inset] rounded-[4px] min-h-[300px] bg-[var(--dd-section-bg-1)] mt-[23px]">
-        {/* <Field
-          label="Example field"
-          validationState="success"
-          validationMessage="This is a success message."
-        >
+      <div className="publish-form shadow-[0_0_1px_rgb(var(--dd-line-bg-1)/100%)_inset] rounded-[4px] min-h-[300px] bg-[var(--dd-section-bg-1)] mt-[23px] p-[20px]">
+        <div className="form-item">
+          <div className="dd-label-1 mb-[8px]">Task Title</div>
           <Input />
-        </Field> */}
+          <Button>Publish</Button>
+        </div>
       </div>
     </div>
   );

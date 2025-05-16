@@ -1,0 +1,33 @@
+.scrollbar {
+ &::-webkit-scrollbar {
+  width: 6px;
+  height: 4px;
+  background-color: transparent;
+ }
+
+ &::-webkit-scrollbar-thumb {
+  background-color: var(--dd-text-color-3);
+  border-radius: 3px;
+ }
+}
+
+.dd-label-1 {
+ color: var(--dd-text-color-1);
+ font-size: 14px;
+ font-weight: 400;
+ line-height: 20px;
+}
+
+.dd-label-2 {
+ color: var(--dd-text-color-2);
+ font-size: 14px;
+ font-weight: 400;
+ line-height: 18px;
+}
+
+.dd-label-3 {
+ color: var(--dd-text-color-3);
+ font-size: 12px;
+ font-weight: 400;
+ line-height: 16px;
+}

@@ -1,7 +1,7 @@
 import '@rainbow-me/rainbowkit/styles.css';
-import '../styles/variable.css';
-import '../styles/global.scss';
-import Provider from '@/components/Layout/index';
+import '@dd-styles';
+import Provider from '@/provider/index';
+import Layout from '../components/Layout/Layout';
 
 export default function RootLayout({
   children,
@@ -9,9 +9,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
-        <Provider>{children}</Provider>
+        <Provider>
+          <Layout>{children}</Layout>
+        </Provider>
       </body>
     </html>
   );
