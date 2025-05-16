@@ -1,6 +1,6 @@
 import '@rainbow-me/rainbowkit/styles.css';
-import '../styles/global.css';
 import '../styles/variable.css';
+import '../styles/global.scss';
 import Provider from '@/components/Layout/index';
 
 export default function RootLayout({

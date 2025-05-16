@@ -42,7 +42,8 @@
     "assets/**/*",
     "styles/**/*",
     "../../libs/ui/src/index.ts",
-    "../../config/**/*"
+    "../../config/**/*.ts",
+    "../../config/**/*.tsx"
   ],
   "exclude": [
     "out-tsc",

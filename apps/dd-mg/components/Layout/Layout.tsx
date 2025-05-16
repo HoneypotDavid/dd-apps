@@ -23,7 +23,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             className="cursor-pointer"
           />
         </div>
-        <div className="main-content flex-1 bg-[blue] overflow-y-auto">
+        <div className="main-content flex-1 overflow-y-auto scrollbar">
           {children}
         </div>
       </div>

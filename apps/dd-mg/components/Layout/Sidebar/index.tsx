@@ -1,33 +1,31 @@
 'use client';
 
+import './style.scss';
 import React from 'react';
 import Profile from './components/Profile';
 import Logo from './components/Logo';
-
 import { Icon } from '@dd-apps/ui';
+import useAppRoutes, { RouterItem } from '@/config/router';
+import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 const Sidebar = ({ open }: { open: boolean }) => {
-  const routers = [
-    {
-      name: 'Guild Hall',
-      href: '/guild-hall',
-      icon: 'map:city-hall',
-    },
-    {
-      name: 'My Tasks',
-      href: '/my-tasks',
-      icon: 'fluent:task-list-square-sparkle-16-regular',
-    },
-    {
-      name: 'Publish Task',
-      href: '/publish-task',
-      icon: 'material-symbols:post-add',
-    },
-  ];
+  const { routers } = useAppRoutes();
+
+  const pathName = usePathname();
+
+  const router = useRouter();
 
   const logo = React.useMemo(() => {
     return <Logo />;
   }, []);
+
+  const handleRouteItemClick = (item: RouterItem) => {
+    if (item.href === pathName) {
+      return;
+    }
+    router.push(item.href);
+  };
 
   return (
     <div
@@ -37,21 +35,27 @@ const Sidebar = ({ open }: { open: boolean }) => {
         transition: 'width 0.2s ease-in-out',
       }}
     >
-      <div className="px-[14px] py-[14px]">{logo}</div>
+      <div className="px-[12px] py-[14px]">{logo}</div>
 
       <div className="h-[1px] w-full bg-[var(--dd-line-bg-2)]"></div>
 
       <div className="!w-100% flex-1 box-border">
-        {routers.map((router) => (
+        {routers.map((item) => (
           <div
-            key={router.name}
-            className="w-100%  cursor-pointer h-[40px] pl-[20px] flex items-center box-border hover:!bg-[var(--dd-line-bg-1)] rounded-[4px] hover:!text-[var(--dd-color-primary)] text-[var(--dd-text-color-2)] mt-[10px]"
+            key={item.name}
+            className={`router-item ${pathName === item.href ? 'active' : ''}`}
+            onClick={() => handleRouteItemClick(item)}
           >
             <div className="w-[24px] h-[24px] flex items-center justify-center">
-              <Icon icon={router.icon} width="24" height="24" color="inherit" />
+              <Icon
+                icon={item.icon}
+                width={item.size}
+                height={item.size}
+                color="inherit"
+              />
             </div>
             <div
-              className="flex-1 text-[var(--dd-text-color-2)] pl-[10px]"
+              className="flex-1 pl-[10px] min-w-[200px]"
               style={{
                 opacity: open ? 1 : 0,
                 overflow: 'hidden',
@@ -60,7 +64,7 @@ const Sidebar = ({ open }: { open: boolean }) => {
                 color: 'inherit',
               }}
             >
-              {router.name}
+              {item.name}
             </div>
           </div>
         ))}

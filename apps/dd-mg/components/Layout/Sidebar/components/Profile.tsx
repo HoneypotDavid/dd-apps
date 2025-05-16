@@ -2,11 +2,9 @@
 
 import { Icon } from '@dd-apps/ui';
 import { ConnectButton, useAccountModal } from '@rainbow-me/rainbowkit';
-import Image from 'next/image';
 import { useAccount } from 'wagmi';
 
-import { useState } from 'react';
-import { useMemo, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { emojiAvatarForAddress } from './emojiAvatarForAddress';
 export default function Profile({ open }: { open: boolean }) {
   const { address, isConnected } = useAccount();
@@ -27,9 +25,9 @@ export default function Profile({ open }: { open: boolean }) {
   }, [address, isConnected]);
 
   return (
-    <div className="h-[140px]  pt-[26px] pb-[26px] mt-[16px] border-t-[1px] border-solid border-[var(--dd-line-bg-2)] w-full box-border !px-[18px] flex flex-col justify-center">
+    <div className="h-[140px]  pt-[26px] pb-[26px] mt-[16px] border-t-[1px] border-solid border-[var(--dd-line-bg-2)] w-full box-border !px-[14px] flex flex-col justify-center">
       {isConnected && open && (
-        <div className="h-[30px] flex items-center gap-x-[6px] text-[var(--dd-text-color-1)] text-[14px] mb-[16px]">
+        <div className="h-[40px] flex items-center gap-x-[6px] text-[var(--dd-text-color-1)] text-[14px] mb-[16px]">
           {backgroundColor && emoji ? (
             <div className="w-[32px] h-[32px] rounded-[50%] bg-[var(--dd-color-primary)] flex items-center justify-center flex-shrink-0">
               <span className="text-[20px]">{emoji}</span>

@@ -1,0 +1,19 @@
+.router-item {
+ cursor: pointer;
+ height: 60px;
+ padding-left: 20px;
+ display: flex;
+ align-items: center;
+ box-sizing: border-box;
+ color: var(--dd-text-color-2);
+
+ &:hover {
+  background-color: var(--dd-line-bg-1);
+  color: var(--dd-color-primary);
+ }
+
+ &.active {
+  background-color: var(--dd-line-bg-1);
+  color: var(--dd-color-primary);
+ }
+}
