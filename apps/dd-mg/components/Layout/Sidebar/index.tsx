@@ -4,13 +4,14 @@ import './style.scss';
 import React from 'react';
 import Profile from './components/Profile';
 import Logo from './components/Logo';
-import { Icon } from '@dd-apps/ui';
-import useAppRoutes, { RouterItem } from '@/config/router';
+import { Icon } from '@dd-shared/components';
+import useAppRoutes from '@/config/router';
 import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation';
+import { RouteItem } from '@/config/router/constants';
 
 const Sidebar = ({ open }: { open: boolean }) => {
-  const { routers } = useAppRoutes();
+  const { routes } = useAppRoutes();
 
   const pathName = usePathname();
 
@@ -20,11 +21,15 @@ const Sidebar = ({ open }: { open: boolean }) => {
     return <Logo />;
   }, []);
 
-  const handleRouteItemClick = (item: RouterItem) => {
+  const handleRouteItemClick = (item: RouteItem) => {
     if (item.href === pathName) {
       return;
     }
     router.push(item.href);
+  };
+
+  const isActive = (item: RouteItem) => {
+    return item.href === pathName || item.alias_path?.includes(pathName);
   };
 
   return (
@@ -40,10 +45,10 @@ const Sidebar = ({ open }: { open: boolean }) => {
       <div className="h-[1px] w-full bg-[var(--dd-line-bg-2)]"></div>
 
       <div className="!w-100% flex-1 box-border">
-        {routers.map((item) => (
+        {routes.map((item) => (
           <div
             key={item.name}
-            className={`router-item ${pathName === item.href ? 'active' : ''}`}
+            className={`router-item ${isActive(item) ? 'active' : ''}`}
             onClick={() => handleRouteItemClick(item)}
           >
             <div className="w-[24px] h-[24px] flex items-center justify-center">

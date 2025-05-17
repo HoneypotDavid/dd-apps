@@ -1,11 +1,11 @@
 'use client';
 
-import { Icon } from '@dd-apps/ui';
+import { Icon } from '@dd-shared/components';
 import { ConnectButton, useAccountModal } from '@rainbow-me/rainbowkit';
 import { useAccount } from 'wagmi';
 
 import { useState, useEffect } from 'react';
-import { emojiAvatarForAddress } from './emojiAvatarForAddress';
+import { emojiAvatarForAddress } from '@dd-shared/ui/lib/emoji';
 export default function Profile({ open }: { open: boolean }) {
   const { address, isConnected } = useAccount();
   const { openAccountModal } = useAccountModal();

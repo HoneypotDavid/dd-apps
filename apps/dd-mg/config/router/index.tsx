@@ -1,34 +1,34 @@
-export interface RouterItem {
-  name: string;
-  href: string;
-  icon: string;
-  size: number;
-}
+import { useEffect, useState } from 'react';
+import { useAccount } from 'wagmi';
+import { allRoutes, RouteItem } from './constants';
+import { usePathname } from 'next/navigation';
 
 const useAppRoutes = () => {
-  const routers: RouterItem[] = [
-    {
-      name: 'Guild Hall',
-      href: '/hall',
-      icon: 'map:city-hall',
-      size: 20,
-    },
-    {
-      name: 'My Tasks',
-      href: '/myTasks',
-      icon: 'fluent:task-list-square-sparkle-16-regular',
-      size: 20,
-    },
-    {
-      name: 'Publish Task',
-      href: '/publish',
-      icon: 'material-symbols:post-add',
-      size: 20,
-    },
-  ];
+  const { isConnected } = useAccount();
+
+  const pathName = usePathname();
+
+  const [routes, setRoutes] = useState<RouteItem[]>([]);
+
+  const [currentRoute, setCurrentRoute] = useState<RouteItem | null>();
+
+  useEffect(() => {
+    const list = allRoutes.filter((route) => {
+      return isConnected ? true : !route.private;
+    });
+    setRoutes(list);
+  }, [isConnected]);
+
+  useEffect(() => {
+    const current = routes.find(
+      (item) => item.href === pathName || item.alias_path?.includes(pathName)
+    );
+    setCurrentRoute(current || null);
+  }, [currentRoute, routes, pathName]);
 
   return {
-    routers,
+    routes,
+    currentRoute,
   };
 };
 

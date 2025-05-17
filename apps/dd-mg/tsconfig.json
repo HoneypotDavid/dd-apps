@@ -24,9 +24,9 @@
       "@/components/*": ["./components/*"],
       "@/assets/*": ["./assets/*"],
       "@/styles/*": ["./styles/*"],
-      "@dd-apps/ui/*": ["../../shared/ui/src/*"],
-      "@dd-apps/ui": ["../../shared/ui/src/index.ts"],
-      "@dd-styles": ["../../shared/ui/src/styles/index.scss"]
+      "@dd-styles": ["../../shared/ui/src/styles/index.scss"],
+      "@dd-shared/components": ["../../shared/ui/src/index.ts"],
+      "@dd-shared/ui/*": ["../../shared/ui/src/*"]
     },
     "outDir": "dist",
     "rootDir": "../../"
@@ -47,7 +47,8 @@
     "config/**/*.tsx",
     "config/**/*.ts",
     "provider/**/*.tsx",
-    "provider/**/*.ts"
+    "provider/**/*.ts",
+    "../../shared/ui/src/lib/emoji.ts"
   ],
   "exclude": [
     "out-tsc",

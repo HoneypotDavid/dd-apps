@@ -10,10 +10,13 @@
       "path": "./apps/dd-vote"
     },
     {
-      "path": "./libs/ui"
-    },
-    {
-      "path": "./libs/tailwind"
+      "path": "./shared/ui"
     }
-  ]
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@dd-shared/ui/*": ["shared/ui/src/*"]
+    }
+  }
 }

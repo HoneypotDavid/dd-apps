@@ -18,7 +18,7 @@
       "@/components/*": ["./src/components/*"],
       "@/lib/*": ["./src/lib/*"],
       "@/hooks/*": ["./src/hooks/*"],
-      "@dd-apps/ui/*": ["./src/*"]
+      "@dd-shared/ui/*": ["./src/*"]
     }
   },
   "exclude": [

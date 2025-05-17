@@ -16,10 +16,9 @@ const DynamicIcon: React.FC<IconProps> = ({
   width = 24,
   height = 24,
   color,
-  className,
 }) => {
   const SvgIcon = dynamic<React.SVGProps<SVGSVGElement>>(
-    () => import(`./svgs/${icon}.svg`),
+    () => import(`../assets/svgs/${icon}.svg`),
     {
       loading: () => (
         <span
@@ -39,7 +38,7 @@ const DynamicIcon: React.FC<IconProps> = ({
         />
       }
     >
-      <SvgIcon width={width} height={height} />
+      <SvgIcon width={width} height={height} fill={color} />
     </Suspense>
   );
 };

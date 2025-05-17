@@ -1,0 +1,31 @@
+/* styles/nprogress.css */
+
+
+#nprogress {
+ pointer-events: none;
+
+ .bar {
+  background: var(--dd-color-primary) !important;
+  /* Tailwind blue-500 或自定义颜色 */
+  position: fixed !important;
+  z-index: 9999 !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 2px !important;
+
+  .peg {
+   box-shadow: unset !important;
+  }
+ }
+
+ .spinner {
+  top: 10px !important;
+  right: 10px !important;
+
+  .spinner-icon {
+   border-top-color: var(--dd-color-primary) !important;
+   border-left-color: var(--dd-color-primary) !important;
+  }
+ }
+}

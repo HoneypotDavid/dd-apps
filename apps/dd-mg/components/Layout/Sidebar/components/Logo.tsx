@@ -1,4 +1,4 @@
-import { Icon } from '@dd-apps/ui';
+import { Icon } from '@dd-shared/components';
 
 export default function Logo() {
   return (
