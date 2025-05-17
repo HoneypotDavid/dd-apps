@@ -6,8 +6,7 @@ import Profile from './components/Profile';
 import Logo from './components/Logo';
 import { Icon } from '@dd-shared/components';
 import useAppRoutes from '@/config/router';
-import { useRouter } from 'next/navigation';
-import { usePathname } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { RouteItem } from '@/config/router/constants';
 
 const Sidebar = ({ open }: { open: boolean }) => {
@@ -34,7 +33,7 @@ const Sidebar = ({ open }: { open: boolean }) => {
 
   return (
     <div
-      className="sidebar h-full bg-[var(--dd-page-bg-2)] box-border overflow-hidden pt-[10px] flex flex-col"
+      className="sidebar h-full bg-[var(--dd-page-bg-2)] box-border overflow-hidden pt-[10px] flex flex-col flex-shrink-0"
       style={{
         width: open ? '250px' : '64px',
         transition: 'width 0.2s ease-in-out',

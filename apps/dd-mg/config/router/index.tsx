@@ -20,15 +20,17 @@ const useAppRoutes = () => {
   }, [isConnected]);
 
   useEffect(() => {
-    const current = routes.find(
+    const current = allRoutes.find(
       (item) => item.href === pathName || item.alias_path?.includes(pathName)
     );
+
     setCurrentRoute(current || null);
   }, [currentRoute, routes, pathName]);
 
   return {
     routes,
     currentRoute,
+    pathName,
   };
 };
 

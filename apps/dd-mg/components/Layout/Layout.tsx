@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Sidebar from '@/components/Layout/Sidebar/index';
 import { Icon } from '@dd-shared/components';
-import { PermissionProvider } from '@/provider/permission';
+import PageWrapper from '../PageWrapper/PageWrapper';
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(true);
 
@@ -25,7 +25,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           />
         </div>
         <div className="main-content flex-1 overflow-y-auto scrollbar">
-          <PermissionProvider>{children}</PermissionProvider>
+          <PageWrapper>{children}</PageWrapper>
         </div>
       </div>
     </div>
