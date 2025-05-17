@@ -26,7 +26,7 @@ export default function Publish() {
       <div className="publish-form shadow-[0_0_1px_rgb(var(--dd-line-bg-1)/100%)_inset] rounded-[4px] min-h-[300px] bg-[var(--dd-section-bg-1)] mt-[23px] p-[20px]">
         <div className="form-item">
           <div className="dd-label-1 mb-[8px]">Task Title</div>
-          <Input />
+          <Input placeholder="Email" />
           <Button>Publish</Button>
         </div>
       </div>
