@@ -12,9 +12,12 @@ import {
   FormMessage,
   Icon,
   Input,
+  Label,
   Popover,
   PopoverContent,
   PopoverTrigger,
+  RadioGroup,
+  RadioGroupItem,
   Textarea,
 } from '@dd-shared/components';
 import { useForm } from 'react-hook-form';
@@ -24,12 +27,18 @@ import dayjs from 'dayjs';
 import { CalendarIcon } from 'lucide-react';
 import { format } from 'date-fns';
 
+const visibilityOptions = [
+  { label: 'Public', value: 'public' },
+  { label: 'Private', value: 'private' },
+];
+
 // Step 1: 定义校验 schema
 const formSchema = z.object({
   title: z.string().min(1, 'Title is required'),
   description: z.string().min(1, 'Description is required'),
   due_date: z.date().min(new Date(), 'Due date must be in the future'),
   reward: z.number().min(0.1, 'Reward is required'),
+  visibility: z.string().min(1, 'Visibility is required'),
 });
 
 export default function Publish() {
@@ -40,6 +49,7 @@ export default function Publish() {
       description: '',
       due_date: dayjs().add(1, 'month').toDate(),
       reward: 1,
+      visibility: 'public',
     },
   });
 
@@ -119,7 +129,7 @@ export default function Publish() {
                   control={form.control}
                   name="due_date"
                   render={({ field }) => (
-                    <FormItem>
+                    <FormItem className="w-[290px]">
                       <FormLabel>Due Date</FormLabel>
                       <FormControl>
                         <Popover>
@@ -163,9 +173,9 @@ export default function Publish() {
 
                 <FormField
                   control={form.control}
-                  name="title"
+                  name="reward"
                   render={({ field }) => (
-                    <FormItem>
+                    <FormItem className="w-[290px]">
                       <FormLabel>
                         <Icon
                           icon="token:usdd"
@@ -184,7 +194,51 @@ export default function Publish() {
                           className="border-[var(--dd-line-bg-2)] w-[290px]"
                         />
                       </FormControl>
-                      <FormDescription>0.1 USDT or more</FormDescription>
+                      <FormDescription>
+                        The minimum amount is 0.1 USDT.
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+
+              <div className="flex items-start gap-[20px] mt-[40px]">
+                <FormField
+                  control={form.control}
+                  name="reward"
+                  render={({ field }) => (
+                    <FormItem className="w-[290px]">
+                      <FormLabel>Task visibility</FormLabel>
+                      <FormControl>
+                        <RadioGroup className="flex ">
+                          {visibilityOptions.map((item) => {
+                            return (
+                              <>
+                                <div className="flex items-center space-x-2">
+                                  <RadioGroupItem
+                                    value={item.value}
+                                    id={item.value}
+                                  />
+                                  <Label htmlFor={item.value}>
+                                    {item.label}
+                                  </Label>
+                                </div>
+                              </>
+                            );
+                          })}
+                        </RadioGroup>
+                      </FormControl>
+                      <FormDescription>
+                        <div>
+                          You need to pay a security deposit of 10% of your
+                          reward.
+                        </div>
+                        <div>
+                          We will hold this amount until the task is completed.
+                        </div>
+                        <div></div>
+                      </FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}

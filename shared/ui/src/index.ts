@@ -10,3 +10,4 @@ export * from './components/textarea';
 export * from './components/calendar';
 export * from './components/popover';
 export * from './components/date';
+export * from './components/radio-group';
