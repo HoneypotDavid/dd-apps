@@ -46,6 +46,7 @@
  --dd-icon-color-1: var(--dd-gray-100);
  --dd-icon-color-2: var(--dd-gray-600);
 
+ --destructive: var(--dd-color-primary);
 }
 
 /* override rainbowkit color */

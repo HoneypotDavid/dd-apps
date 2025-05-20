@@ -1,8 +1,6 @@
 'use client';
 import {
   Button,
-  Calendar,
-  cn,
   Form,
   FormControl,
   FormDescription,
@@ -13,9 +11,6 @@ import {
   Icon,
   Input,
   Label,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
   RadioGroup,
   RadioGroupItem,
   Textarea,
@@ -24,20 +19,30 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import dayjs from 'dayjs';
-import { CalendarIcon } from 'lucide-react';
-import { format } from 'date-fns';
+import DatePicker from '@dd-shared/ui/components/date';
+
+const enum Visibility {
+  PUBLIC = 'public',
+  PRIVATE = 'private',
+}
 
 const visibilityOptions = [
-  { label: 'Public', value: 'public' },
-  { label: 'Private', value: 'private' },
+  { label: 'Public', value: Visibility.PUBLIC, icon: 'solar:global-outline' },
+  {
+    label: 'Private',
+    value: Visibility.PRIVATE,
+    icon: 'material-symbols:lock-outline',
+  },
 ];
 
 // Step 1: 定义校验 schema
 const formSchema = z.object({
-  title: z.string().min(1, 'Title is required'),
-  description: z.string().min(1, 'Description is required'),
-  due_date: z.date().min(new Date(), 'Due date must be in the future'),
-  reward: z.number().min(0.1, 'Reward is required'),
+  title: z.string().min(1, 'Please enter a title'),
+  description: z.string().min(1, 'Please enter a description'),
+  due_date: z.date().min(new Date(), 'Please select a due date'),
+  reward: z
+    .number()
+    .refine((val) => val > 0, 'Please enter a greater than 0 reward amount'),
   visibility: z.string().min(1, 'Visibility is required'),
 });
 
@@ -53,6 +58,10 @@ export default function Publish() {
     },
   });
 
+  const { setValue, watch } = form;
+
+  const visibility = watch('visibility');
+
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
@@ -64,7 +73,7 @@ export default function Publish() {
     <div className="p-[24px] box-border">
       <div className="publish-header ">
         <div className="title text-[var(--dd-text-color-1)] text-[22px] font-500">
-          Post a task
+          Publish a task
         </div>
         <div className="desc text-[var(--dd-text-color-2)] text-[14px] font-400">
           Detail the task you need completed. The more information you provide,
@@ -124,47 +133,22 @@ export default function Publish() {
                 )}
               />
 
-              <div className="flex items-center gap-[20px] mt-[40px]">
+              <div className="flex items-start gap-[20px] mt-[40px]">
                 <FormField
                   control={form.control}
                   name="due_date"
                   render={({ field }) => (
                     <FormItem className="w-[290px]">
-                      <FormLabel>Due Date</FormLabel>
+                      <FormLabel className="h-[22px]">Due Date</FormLabel>
                       <FormControl>
-                        <Popover>
-                          <PopoverTrigger asChild>
-                            <FormControl>
-                              <Button
-                                variant={'outline'}
-                                className={cn(
-                                  'w-[240px] pl-3  font-normal',
-                                  !field.value && 'text-muted-foreground',
-                                  'flex items-center justify-start'
-                                )}
-                              >
-                                <CalendarIcon className="h-4 w-4 opacity-50" />
-                                {field.value ? (
-                                  format(field.value, 'PPP')
-                                ) : (
-                                  <span>Pick a date</span>
-                                )}
-                              </Button>
-                            </FormControl>
-                          </PopoverTrigger>
-                          <PopoverContent className="w-auto p-0" align="start">
-                            <Calendar
-                              mode="single"
-                              selected={field.value}
-                              onSelect={field.onChange}
-                              disabled={(date) => date < new Date()}
-                              initialFocus
-                            />
-                          </PopoverContent>
-                        </Popover>
+                        <DatePicker
+                          className="w-[100%] border-[1px]! border-solid! border-[var(--dd-line-bg-2)]!"
+                          value={field.value}
+                          onSelect={field.onChange}
+                        />
                       </FormControl>
                       <FormDescription>
-                        A clear and concise title for your task.
+                        The end time of the task.
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
@@ -176,7 +160,7 @@ export default function Publish() {
                   name="reward"
                   render={({ field }) => (
                     <FormItem className="w-[290px]">
-                      <FormLabel>
+                      <FormLabel className="h-[22px]">
                         <Icon
                           icon="token:usdd"
                           width="20"
@@ -188,10 +172,13 @@ export default function Publish() {
                       <FormControl>
                         <Input
                           type="number"
-                          min={0.1}
                           placeholder="The amount of USDT to reward the mercenary"
                           {...field}
                           className="border-[var(--dd-line-bg-2)] w-[290px]"
+                          onChange={(e) => {
+                            const value = e.target.value;
+                            setValue('reward', Number(value));
+                          }}
                         />
                       </FormControl>
                       <FormDescription>
@@ -206,38 +193,52 @@ export default function Publish() {
               <div className="flex items-start gap-[20px] mt-[40px]">
                 <FormField
                   control={form.control}
-                  name="reward"
+                  name="visibility"
                   render={({ field }) => (
-                    <FormItem className="w-[290px]">
+                    <FormItem>
                       <FormLabel>Task visibility</FormLabel>
                       <FormControl>
-                        <RadioGroup className="flex ">
+                        <RadioGroup
+                          defaultValue={field.value}
+                          className="flex gap-x-[20px]"
+                          onValueChange={field.onChange}
+                        >
                           {visibilityOptions.map((item) => {
                             return (
-                              <>
-                                <div className="flex items-center space-x-2">
-                                  <RadioGroupItem
-                                    value={item.value}
-                                    id={item.value}
+                              <div
+                                key={item.value}
+                                className="flex items-center space-x-2 h-[30px]"
+                              >
+                                <RadioGroupItem
+                                  value={item.value}
+                                  id={item.value}
+                                  className="border-[var(--dd-line-bg-2)]"
+                                />
+                                <div className="flex items-center gap-x-[6px]">
+                                  <Icon
+                                    icon={item.icon}
+                                    width="16"
+                                    height="16"
+                                    color="var(--dd-text-color-1)"
                                   />
                                   <Label htmlFor={item.value}>
                                     {item.label}
                                   </Label>
                                 </div>
-                              </>
+                              </div>
                             );
                           })}
                         </RadioGroup>
                       </FormControl>
                       <FormDescription>
-                        <div>
-                          You need to pay a security deposit of 10% of your
-                          reward.
-                        </div>
-                        <div>
-                          We will hold this amount until the task is completed.
-                        </div>
-                        <div></div>
+                        {visibility === Visibility.PUBLIC ? (
+                          <span>The task will be visible to everyone.</span>
+                        ) : (
+                          <span>
+                            The task will be visible to only you or the people
+                            you invite.
+                          </span>
+                        )}
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
@@ -245,7 +246,20 @@ export default function Publish() {
                 />
               </div>
 
-              <Button type="submit">Submit</Button>
+              <Button
+                type="submit"
+                className="bg-[var(--dd-color-primary)] hover:bg-[var(--dd-color-primary-hover)]"
+              >
+                <Icon
+                  icon="material-symbols:add-rounded"
+                  width="24"
+                  height="24"
+                  className="text-[var(--dd-text-color-1)]"
+                />
+                <span className="text-[14px] font-500 text-[var(--dd-text-color-1)]">
+                  Publish Task
+                </span>
+              </Button>
             </form>
           </Form>
         </div>
